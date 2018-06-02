@@ -16,8 +16,6 @@
 		127B7DB220B7EDE5009B1424 /* SLAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DB120B7EDE5009B1424 /* SLAPIService.swift */; };
 		127B7DB420B7EE00009B1424 /* SLMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DB320B7EE00009B1424 /* SLMoyaPlugin.swift */; };
 		127B7DB620B7F09B009B1424 /* SLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DB520B7F09B009B1424 /* SLError.swift */; };
-		127B7DB820B7F0E5009B1424 /* SLUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DB720B7F0E5009B1424 /* SLUIView+Extension.swift */; };
-		127B7DBA20B7F152009B1424 /* SLGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DB920B7F152009B1424 /* SLGeneral.swift */; };
 		127B7DBC20B7F2A2009B1424 /* SLObservableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DBB20B7F2A2009B1424 /* SLObservableExtension.swift */; };
 		127B7DBE20B7F39F009B1424 /* SLNetworkingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DBD20B7F39F009B1424 /* SLNetworkingHandler.swift */; };
 		127B7DC020B80E72009B1424 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DBF20B80E72009B1424 /* Model.swift */; };
@@ -36,8 +34,6 @@
 		127B7DB120B7EDE5009B1424 /* SLAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAPIService.swift; sourceTree = "<group>"; };
 		127B7DB320B7EE00009B1424 /* SLMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLMoyaPlugin.swift; sourceTree = "<group>"; };
 		127B7DB520B7F09B009B1424 /* SLError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLError.swift; sourceTree = "<group>"; };
-		127B7DB720B7F0E5009B1424 /* SLUIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SLUIView+Extension.swift"; sourceTree = "<group>"; };
-		127B7DB920B7F152009B1424 /* SLGeneral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLGeneral.swift; sourceTree = "<group>"; };
 		127B7DBB20B7F2A2009B1424 /* SLObservableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLObservableExtension.swift; sourceTree = "<group>"; };
 		127B7DBD20B7F39F009B1424 /* SLNetworkingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLNetworkingHandler.swift; sourceTree = "<group>"; };
 		127B7DBF20B80E72009B1424 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -94,8 +90,6 @@
 		127B7DAA20B7ED5B009B1424 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				127B7DB920B7F152009B1424 /* SLGeneral.swift */,
-				127B7DB720B7F0E5009B1424 /* SLUIView+Extension.swift */,
 				127B7DB520B7F09B009B1424 /* SLError.swift */,
 				127B7DB320B7EE00009B1424 /* SLMoyaPlugin.swift */,
 				127B7DAF20B7EDDD009B1424 /* SLAPI.swift */,
@@ -220,36 +214,26 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
-				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -269,11 +253,9 @@
 				127B7DB620B7F09B009B1424 /* SLError.swift in Sources */,
 				127B7DB420B7EE00009B1424 /* SLMoyaPlugin.swift in Sources */,
 				127B7DBC20B7F2A2009B1424 /* SLObservableExtension.swift in Sources */,
-				127B7DB820B7F0E5009B1424 /* SLUIView+Extension.swift in Sources */,
 				127B7DBE20B7F39F009B1424 /* SLNetworkingHandler.swift in Sources */,
 				127B7DC020B80E72009B1424 /* Model.swift in Sources */,
 				127B7DB220B7EDE5009B1424 /* SLAPIService.swift in Sources */,
-				127B7DBA20B7F152009B1424 /* SLGeneral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

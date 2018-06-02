@@ -30,10 +30,9 @@ extension SLError: LocalizedError {
                 let resultMsg = resultMsg else {
                     return "========>>> 操作失败 <<<========"
             }
-//            SLTools.showTips(resultMsg)
-            return "========>>> 错误码: " + resultCode.sl_ToString + ", 错误信息: " + resultMsg + " <<<========"
+            return "========>>> 错误码: " + String(describing: resultCode) + ", 错误信息: " + resultMsg + " <<<========"
         case .SLLogout:
-//            SLTools.userLogout()
+            // FIXME: - =======进行登出操作======
             return "========>>> 登录过期,需登出 <<<========"
         case .SLFailed(let error):
             return "========>>> 失败: \(String(describing: error)) <<<========"
