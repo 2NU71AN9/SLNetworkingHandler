@@ -15,6 +15,10 @@ import Result
 /// Moya插件: 网络请求时显示loading...
 internal final class SLShowState: PluginType {
     
+    /// 在发送之前调用来修改请求
+//    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {}
+    
+    /// 在通过网络发送请求(或存根)之前立即调用
     func willSend(_ request: RequestType, target: TargetType) {
         
         guard let target = target as? SLAPIService
@@ -24,10 +28,14 @@ internal final class SLShowState: PluginType {
         SVProgressHUD.setDefaultMaskType(.clear)
     }
     
+    /// 在收到响应之后调用，但是在MoyaProvider调用它的完成处理程序之前调用
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         /// 0.2s后消失
         SVProgressHUD.dismiss(withDelay: 0.2)
     }
+    
+    /// 调用以在完成之前修改结果
+//    func process(_ result: Result<Response, MoyaError>, target: TargetType) -> Result<Response, MoyaError> {}
 }
 
 /// Moya插件: 控制台打印请求的参数和服务器返回的json数据

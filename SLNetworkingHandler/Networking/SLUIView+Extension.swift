@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import SDWebImage
 import RxSwift
 import SnapKit
 import Then
 import RxCocoa
+import Kingfisher
 
 // MARK: - =============UIView=============
 
@@ -141,7 +141,7 @@ public extension UIImageView {
                 image = placeholderImage?.sl_image(size: bounds.size, circular: isAvatar)
                 return
         }
-        sd_setImage(with: url, placeholderImage: placeholderImage, options: [], progress: nil) { [weak self] (image, _, _, _) in
+        kf.setImage(with: url, placeholder: placeholderImage, options: [], progressBlock: nil) { [weak self] (image, _, _, _) in
             self?.image = image?.sl_image(size: self?.bounds.size, circular: isAvatar)
         }
     }
