@@ -1,0 +1,6 @@
+framework module Pods_SLNetworkingHandler {
+  umbrella header "Pods-SLNetworkingHandler-umbrella.h"
+
+  export *
+  module * { export * }
+}
