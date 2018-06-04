@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import SwiftyJSON
 import HandyJSON
+import RxDataSources
 
 typealias NR = NetworkResponse
 
@@ -205,5 +206,36 @@ extension Observable {
         return self.do(onError: { (error) in
             print("\(error.localizedDescription)")
         })
+    }
+}
+
+extension Observable where E: HandyJSON {
+    
+    /// 转dataSource
+    ///
+    /// - Parameter text: 一般为空或section的header
+    /// - Returns:
+    func mapSectionModel(_ text: String) -> Observable<SectionModel<String, E>> {
+        return map { model in
+            return SectionModel(model: text, items: [model])
+        }
+    }
+}
+
+extension Observable {
+    
+    /// 转dataSource
+    ///
+    /// - Parameters:
+    ///   - text: 一般为空或section的header
+    ///   - type: 由于是E是数组, 所以需要传入model的类型
+    /// - Returns:
+    func mapSectionModel<T: HandyJSON>(_ text: String, type: T.Type) -> Observable<SectionModel<String, T>> {
+        return map { models -> SectionModel<String, T> in
+            guard let models = models as? [T] else {
+                    return SectionModel(model: "", items: [])
+            }
+            return SectionModel(model: text, items: models)
+        }
     }
 }

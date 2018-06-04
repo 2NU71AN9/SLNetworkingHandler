@@ -18,11 +18,10 @@ class ViewController: UIViewController {
         
         SLNetworkingHandler
         .request(.loadCarBrand)
-        .mapModel(Model.self)
+        .mapModels(Model.self)
+        .mapSectionModel("", type: Model.self)
         .subscribe(onNext: { (model) in
-            
         }, onError: { (error) in
-            
         })
         .disposed(by: bag)
     }
