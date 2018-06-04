@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         .mapModels(Model.self)
         .mapSectionModel("", type: Model.self)
         .subscribe(onNext: { (model) in
+
         }, onError: { (error) in
         })
         .disposed(by: bag)

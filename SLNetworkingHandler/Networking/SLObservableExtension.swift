@@ -215,9 +215,9 @@ extension Observable where E: HandyJSON {
     ///
     /// - Parameter text: 一般为空或section的header
     /// - Returns:
-    func mapSectionModel(_ text: String) -> Observable<SectionModel<String, E>> {
+    func mapSectionModel(_ text: String) -> Observable<[SectionModel<String, E>]> {
         return map { model in
-            return SectionModel(model: text, items: [model])
+            return [SectionModel(model: text, items: [model])]
         }
     }
 }
@@ -227,15 +227,40 @@ extension Observable {
     /// 转dataSource
     ///
     /// - Parameters:
-    ///   - text: 一般为空或section的header
+    ///   - text: String或[String],决定返回的是一个section还是多个section
     ///   - type: 由于是E是数组, 所以需要传入model的类型
     /// - Returns:
-    func mapSectionModel<T: HandyJSON>(_ text: String, type: T.Type) -> Observable<SectionModel<String, T>> {
-        return map { models -> SectionModel<String, T> in
+    func mapSectionModel<T: HandyJSON>(_ text: Any, type: T.Type) -> Observable<[SectionModel<String, T>]> {
+        return map { models in
             guard let models = models as? [T] else {
-                    return SectionModel(model: "", items: [])
+                    return [SectionModel(model: "", items: [])]
             }
-            return SectionModel(model: text, items: models)
+            
+            if let text = text as? String {
+                return [SectionModel(model: text, items: models)]
+            }
+            
+            if let text = text as? [String] {
+                
+                var array = [SectionModel<String, T>]()
+                
+                for (index, value) in models.enumerated() {
+                    var str = ""
+                    if text.count - 1 < index {
+                        str = text.last ?? ""
+                    }else{
+                        str = text[index]
+                    }
+                    array.append(SectionModel(model: str, items: [value]))
+                }
+                return array
+            }
+            
+            return [SectionModel(model: "", items: [])]
+//            return singleSection
+//                ? [SectionModel(model: text, items: models)]
+//                : models.compactMap { SectionModel(model: text, items: [$0]) }
+            
         }
     }
 }
