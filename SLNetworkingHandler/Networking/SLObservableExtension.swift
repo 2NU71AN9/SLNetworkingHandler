@@ -264,3 +264,13 @@ extension Observable {
         }
     }
 }
+
+extension Observable {
+    func bindToSelector(sel: Selector) -> Observable {
+        return map{ element in
+            return element
+        }
+    }
+}
+
+

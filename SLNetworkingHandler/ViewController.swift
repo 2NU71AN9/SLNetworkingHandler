@@ -25,6 +25,17 @@ class ViewController: UIViewController {
         }, onError: { (error) in
         })
         .disposed(by: bag)
+        
+        let va = Variable(1)
+        Observable.of(1).bind(to: va).disposed(by: bag)
+    }
+    
+    @objc func test() {
+        
     }
 }
 
+extension ObservableType {
+    public func bind(to variable: RxSwift.Variable<Self.E>) -> Disposable
+    
+}
