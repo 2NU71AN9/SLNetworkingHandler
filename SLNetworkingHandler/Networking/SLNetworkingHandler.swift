@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Moya
 import HandyJSON
+import Alamofire
 
 class SLNetworkingHandler {
     
@@ -53,5 +54,40 @@ class SLNetworkingHandler {
             return Disposables.create()
         }
             .filterFailure(nil)
+    }
+}
+
+/// 网络检测
+class SLNetworkStatusManager {
+    
+    var networkStatus: NetworkReachabilityManager.NetworkReachabilityStatus = .unknown
+    var manager: NetworkReachabilityManager?
+    
+    static let shared: SLNetworkStatusManager = {
+        let shared = SLNetworkStatusManager()
+        shared.manager = NetworkReachabilityManager(host: "www.baidu.com")
+        return shared
+    }()
+    private init() {}
+    
+    /// 开始监测
+    func start() {
+        manager?.listener = { [weak self] status in
+            self?.networkStatus = status
+        }
+        manager?.startListening()
+    }
+    
+    func checkNetworkStatus() {
+        switch networkStatus {
+        case .notReachable:
+            print("当前网络=====> 无网络连接")
+        case .unknown:
+            print("当前网络=====> 未知网络")
+        case .reachable(.ethernetOrWiFi):
+            print("当前网络=====> 以太网或WIFI")
+        case .reachable(.wwan):
+            print("当前网络=====> 蜂窝移动网络")
+        }
     }
 }
