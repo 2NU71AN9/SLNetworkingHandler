@@ -28,6 +28,6 @@ public enum HttpStatus: Int {
 /// 是否是发布版本
 public let isRelease: Bool = true
 /// 发布域名
-public let releaseUrl = ""
+public let releaseUrl = "http://www.baidu.com"
 /// 测试域名
-public let debugUrl = ""
+public let debugUrl = "http://www.baidu.com"

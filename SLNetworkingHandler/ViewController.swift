@@ -35,7 +35,3 @@ class ViewController: UIViewController {
     }
 }
 
-extension ObservableType {
-    public func bind(to variable: RxSwift.Variable<Self.E>) -> Disposable
-    
-}

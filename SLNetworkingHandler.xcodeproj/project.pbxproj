@@ -91,9 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				127B7DB520B7F09B009B1424 /* SLError.swift */,
-				127B7DB320B7EE00009B1424 /* SLMoyaPlugin.swift */,
 				127B7DAF20B7EDDD009B1424 /* SLAPI.swift */,
 				127B7DB120B7EDE5009B1424 /* SLAPIService.swift */,
+				127B7DB320B7EE00009B1424 /* SLMoyaPlugin.swift */,
 				127B7DBB20B7F2A2009B1424 /* SLObservableExtension.swift */,
 				127B7DBD20B7F39F009B1424 /* SLNetworkingHandler.swift */,
 			);

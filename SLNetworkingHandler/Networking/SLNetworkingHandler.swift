@@ -21,7 +21,7 @@ class SLNetworkingHandler {
     /// - Parameter APIService: APIService枚举
     /// - Returns:
     static func request(_ APIService: SLAPIService) -> Observable<NR> {
-    
+
         return Observable<NR>.create { (observer) -> Disposable in
             
             APIProvider.request(APIService) { (response) in
@@ -39,13 +39,14 @@ class SLNetworkingHandler {
                     }
                     observer.onNext(response)
                     observer.onCompleted()
-                    
+                    break
                 case let .failure(error):
                     // 网络请求失败
                     observer.onNext(NR(code: HttpStatus.requestFailed.rawValue,
                                        message: nil,
                                        data: nil,
                                        error: SLError.SLRequestFailed(error: error)))
+                    observer.onCompleted()
                     break
                 }
             }
