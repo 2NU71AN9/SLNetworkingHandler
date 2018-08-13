@@ -13,18 +13,18 @@ import SwiftyJSON
 import HandyJSON
 import RxDataSources
 
-typealias NR = NetworkResponse
+public typealias NR = NetworkResponse
 
 extension Observable where E == NR {
     
-    typealias Complete = ((NR) -> Void)?
+    public typealias Complete = ((NR) -> Void)?
     
     
     /// JSON转Model
     ///
     /// - Parameter modelType: 要转换成的model
     /// - Returns:
-    func mapModel<T: HandyJSON>(_ modelType: T.Type) -> Observable<T> {
+    public func mapModel<T: HandyJSON>(_ modelType: T.Type) -> Observable<T> {
         return map { response in
             if response.code == HttpStatus.success.rawValue {
                 /// 成功
@@ -60,7 +60,7 @@ extension Observable where E == NR {
     ///
     /// - Parameter modelType: 要转换成的model
     /// - Returns:
-    func mapModels<T: HandyJSON>(_ modelType: T.Type) -> Observable<[T]> {
+    public func mapModels<T: HandyJSON>(_ modelType: T.Type) -> Observable<[T]> {
         return map { response in
             if response.code == HttpStatus.success.rawValue {
                 /// 成功
@@ -99,7 +99,7 @@ extension Observable where E == NR {
     ///   - completeModels: model数组
     ///   - completeModel: model
     /// - Returns:
-    private func JSON2Model<T: HandyJSON>(_ modelType: T.Type, completeModels: (([T]) -> Void)? = nil, completeModel: ((T) -> Void)? = nil) -> Observable<NR> {
+    public func JSON2Model<T: HandyJSON>(_ modelType: T.Type, completeModels: (([T]) -> Void)? = nil, completeModel: ((T) -> Void)? = nil) -> Observable<NR> {
         
         return map { response in
             if response.code == HttpStatus.success.rawValue {
@@ -146,7 +146,7 @@ extension Observable where E == NR {
     ///
     /// - Parameter complete: 成功的闭包
     /// - Returns: 
-    private func isSuccess(_ complete: Complete) -> Observable<NR> {
+    public func isSuccess(_ complete: Complete) -> Observable<NR> {
         return map { response in
             if response.code == HttpStatus.success.rawValue {
                 complete?(response)
@@ -169,7 +169,7 @@ extension Observable where E == NR {
     ///
     /// - Parameter complete: 失败的闭包
     /// - Returns:
-    func filterFailure(_ complete: Complete) -> Observable<NR> {
+    public func filterFailure(_ complete: Complete) -> Observable<NR> {
         return map { response in
             if response.code == HttpStatus.success.rawValue {
                 return response
@@ -215,7 +215,7 @@ extension Observable where E: HandyJSON {
     ///
     /// - Parameter text: 一般为空或section的header
     /// - Returns:
-    func mapSectionModel(_ text: String) -> Observable<[SectionModel<String, E>]> {
+    public func mapSectionModel(_ text: String) -> Observable<[SectionModel<String, E>]> {
         return map { model in
             return [SectionModel(model: text, items: [model])]
         }
@@ -230,7 +230,7 @@ extension Observable {
     ///   - text: String或[String],决定返回的是一个section还是多个section
     ///   - type: 由于是E是数组, 所以需要传入model的类型
     /// - Returns:
-    func mapSectionModel<T: HandyJSON>(_ text: Any, type: T.Type) -> Observable<[SectionModel<String, T>]> {
+    public func mapSectionModel<T: HandyJSON>(_ text: Any, type: T.Type) -> Observable<[SectionModel<String, T>]> {
         return map { models in
             guard let models = models as? [T] else {
                     return [SectionModel(model: "", items: [])]
@@ -266,7 +266,7 @@ extension Observable {
 }
 
 extension Observable {
-    func bindToSelector(sel: Selector) -> Observable {
+    public func bindToSelector(sel: Selector) -> Observable {
         return map{ element in
             return element
         }

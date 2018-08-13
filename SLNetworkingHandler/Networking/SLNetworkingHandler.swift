@@ -12,16 +12,16 @@ import Moya
 import HandyJSON
 import Alamofire
 
-class SLNetworkingHandler {
+public class SLNetworkingHandler {
     
-    static let APIProvider = MoyaProvider<SLAPIService>(plugins: [SLShowState(),
+    private static let APIProvider = MoyaProvider<SLAPIService>(plugins: [SLShowState(),
                                                                   SLPrintParameterAndJson()])
     
     /// 网络请求
     ///
     /// - Parameter APIService: APIService枚举
     /// - Returns:
-    static func request(_ APIService: SLAPIService) -> Observable<NR> {
+    public static func request(_ APIService: SLAPIService) -> Observable<NR> {
 
         return Observable<NR>.create { (observer) -> Disposable in
             
@@ -58,12 +58,12 @@ class SLNetworkingHandler {
 }
 
 /// 网络检测
-class SLNetworkStatusManager {
+public class SLNetworkStatusManager {
     
-    var networkStatus: NetworkReachabilityManager.NetworkReachabilityStatus = .unknown
-    var manager: NetworkReachabilityManager?
+    public var networkStatus: NetworkReachabilityManager.NetworkReachabilityStatus = .unknown
+    private var manager: NetworkReachabilityManager?
     
-    static let shared: SLNetworkStatusManager = {
+    public static let shared: SLNetworkStatusManager = {
         let shared = SLNetworkStatusManager()
         shared.manager = NetworkReachabilityManager(host: "www.baidu.com")
         return shared
@@ -71,7 +71,7 @@ class SLNetworkStatusManager {
     private init() {}
     
     /// 开始监测
-    func start() {
+    public func start() {
         manager?.listener = { [weak self] status in
             self?.networkStatus = status
         }

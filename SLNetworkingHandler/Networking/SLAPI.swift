@@ -10,11 +10,22 @@ import Foundation
 import HandyJSON
 
 /// 网络请求返回数据结构
-struct NetworkResponse: HandyJSON {
+public struct NetworkResponse: HandyJSON {
+    
     var code: Int = 0
     var message: String?
     var data: Any?
     var error: SLError?
+    
+    public init() {
+        self.init(code: 0, message: nil, data: nil, error: nil)
+    }
+    public init(code: Int, message: String?, data: Any?, error: SLError?) {
+        self.code = code
+        self.message = message
+        self.data = data
+        self.error = error
+    }
 }
 
 /// 各code代表什么
