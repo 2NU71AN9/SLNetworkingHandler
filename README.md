@@ -3,6 +3,7 @@
 
 pod 'SLNetworkingHandler'
 
+```
 SLNetworkingHandler
 .request(.loadCarBrand)
 .mapModels(Model.self) #转换数据模型，可不加
@@ -13,3 +14,4 @@ SLNetworkingHandler
 
 })
 .disposed(by: bag)
+```
