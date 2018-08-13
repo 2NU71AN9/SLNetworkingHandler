@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SLNetworkingHandler"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.swift_version  = "4.1"
   s.summary      = "网络请求"
   s.description  = "封装Moya+RxSwift+HandyJSON网络请求框架"
