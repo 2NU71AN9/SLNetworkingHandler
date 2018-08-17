@@ -12,6 +12,7 @@ import RxCocoa
 import SwiftyJSON
 import HandyJSON
 import RxDataSources
+import Moya
 
 public typealias NR = NetworkResponse
 

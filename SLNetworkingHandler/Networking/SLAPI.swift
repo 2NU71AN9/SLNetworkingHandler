@@ -39,6 +39,6 @@ public enum HttpStatus: Int {
 /// 是否是发布版本
 public let isRelease: Bool = true
 /// 发布域名
-public let releaseUrl = "http://www.baidu.com"
+public let releaseUrl = "http://xcsys.xiaocaoyangche.com/xcycInsideApi/"
 /// 测试域名
 public let debugUrl = "http://www.baidu.com"

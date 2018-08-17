@@ -16,7 +16,11 @@ import Result
 internal final class SLShowState: PluginType {
     
     /// 在发送之前调用来修改请求
-//    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {}
+    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        var request = request
+        request.timeoutInterval = 15 //超时时间
+        return request
+    }
     
     /// 在通过网络发送请求(或存根)之前立即调用
     func willSend(_ request: RequestType, target: TargetType) {

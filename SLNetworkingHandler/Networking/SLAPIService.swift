@@ -61,4 +61,9 @@ extension SLAPIService: TargetType {
     public var showStats: Bool {
         return true
     }
+    
+    /// 是否缓存结果数据
+    public var cacheData: Bool {
+        return true
+    }
 }

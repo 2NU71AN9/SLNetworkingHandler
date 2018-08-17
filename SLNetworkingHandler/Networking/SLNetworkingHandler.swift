@@ -14,7 +14,7 @@ import Alamofire
 
 public class SLNetworkingHandler {
     
-    private static let APIProvider = MoyaProvider<SLAPIService>(plugins: [SLShowState(),
+    static let APIProvider = MoyaProvider<SLAPIService>(plugins: [SLShowState(),
                                                                   SLPrintParameterAndJson()])
     
     /// 网络请求
@@ -25,6 +25,25 @@ public class SLNetworkingHandler {
 
         return Observable<NR>.create { (observer) -> Disposable in
             
+            // 从缓存获取数据
+            if APIService.cacheData,
+                let response = loadDataFromCacheWithTarget(APIService) {
+                #if DEBUG
+                print("""
+                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                    从缓存获取数据=====> \(APIService)
+                    
+                    """)
+                #endif
+                observer.onNext(response)
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            // 从网络获取数据
             APIProvider.request(APIService) { (response) in
                 switch response {
                 case let .success(result):
@@ -53,7 +72,15 @@ public class SLNetworkingHandler {
             }
             return Disposables.create()
         }
+//            .debug()
+            .observeOn(MainScheduler.instance)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .default))
             .filterFailure(nil)
+    }
+    
+    /// 从缓存获取数据
+    private static func loadDataFromCacheWithTarget(_ target: SLAPIService) -> NR? {
+        return nil
     }
 }
 

@@ -15,23 +15,25 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        SLNetworkingHandler
-        .request(.loadCarBrand)
-        .mapModels(Model.self)
-        .mapSectionModel("", type: Model.self)
-        .subscribe(onNext: { (model) in
 
-        }, onError: { (error) in
-        })
-        .disposed(by: bag)
-        
         let va = Variable(1)
         Observable.of(1).bind(to: va).disposed(by: bag)
     }
     
     @objc func test() {
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        SLNetworkingHandler
+            .request(.loadCarBrand)
+            .mapModels(Model.self)
+            .mapSectionModel("", type: Model.self)
+            .subscribe(onNext: { (model) in
+                
+            }, onError: { (error) in
+            })
+            .disposed(by: bag)
     }
 }
 
