@@ -12,7 +12,7 @@ import Moya
 import HandyJSON
 import Alamofire
 
-public class SLNetworkingHandler {
+public class SLNetworkingHandler: SLRequestCacheProtocol {
     
     static let APIProvider = MoyaProvider<SLAPIService>(plugins: [SLShowState(),
                                                                   SLPrintParameterAndJson()])
@@ -24,10 +24,9 @@ public class SLNetworkingHandler {
     public static func request(_ APIService: SLAPIService) -> Observable<NR> {
 
         return Observable<NR>.create { (observer) -> Disposable in
-            
+
             // 从缓存获取数据
-            if APIService.cacheData,
-                let response = loadDataFromCacheWithTarget(APIService) {
+            if APIService.cacheData {
                 #if DEBUG
                 print("""
                     >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -38,10 +37,41 @@ public class SLNetworkingHandler {
                     
                     """)
                 #endif
-                observer.onNext(response)
-                observer.onCompleted()
+                loadDataFromCacheWithTarget(APIService, success: { (response) in
+                    observer.onNext(response)
+                    observer.onCompleted()
+                }, failure: { (_) in
+                    
+                    loadDataFromNetworkWothTarget(APIService, success: { (response) in
+                        observer.onNext(response)
+                        observer.onCompleted()
+                    }, failure: { (error) in
+                        observer.onNext(NR(code: HttpStatus.requestFailed.rawValue,
+                                           message: nil,
+                                           data: nil,
+                                           error: SLError.SLRequestFailed(error: error)))
+                        observer.onCompleted()
+                    })
+                })
                 return Disposables.create()
             }
+            else {
+                loadDataFromNetworkWothTarget(APIService, success: { (response) in
+                    observer.onNext(response)
+                    observer.onCompleted()
+                }, failure: { (error) in
+                    observer.onNext(NR(code: HttpStatus.requestFailed.rawValue,
+                                       message: nil,
+                                       data: nil,
+                                       error: SLError.SLRequestFailed(error: error)))
+                    observer.onCompleted()
+                })
+            }
+            
+            return Disposables.create()
+            
+            
+            
             
             // 从网络获取数据
             APIProvider.request(APIService) { (response) in
@@ -76,11 +106,6 @@ public class SLNetworkingHandler {
             .observeOn(MainScheduler.instance)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .default))
             .filterFailure(nil)
-    }
-    
-    /// 从缓存获取数据
-    private static func loadDataFromCacheWithTarget(_ target: SLAPIService) -> NR? {
-        return nil
     }
 }
 

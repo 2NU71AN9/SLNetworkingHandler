@@ -25,6 +25,31 @@ class ViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+//        SLCoreDataManager.shared.save(model: Cache.self, content: { (cache) in
+//            cache?.url = "123123"
+//            cache?.timeStamp = 41236741241
+//            cache?.response = Data()
+//        }, success: {
+//            print("保存成功")
+//        }) { (_) in
+//            print("保存失败")
+//        }
+        
+        
+//        SLCoreDataManager.shared.fetch(table: Cache.self, fetchRequestContent: { (request) in
+//            
+//        }, predicate: { () -> NSPredicate in
+//            return NSPredicate(format: "url= '123123' ", "")
+//        }, success: { (array) in
+//            for cache in array {
+//                print(cache.timeStamp)
+//            }
+//        }) { (_) in
+//            
+//        }
+        
+        
         SLNetworkingHandler
             .request(.loadCarBrand)
             .mapModels(Model.self)
