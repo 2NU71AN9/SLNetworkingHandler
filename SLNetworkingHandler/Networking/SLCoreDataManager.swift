@@ -25,7 +25,7 @@ class SLCoreDataManager {
     }
     
     /// 托管对象上下文
-    private var context: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+    var context: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     
     static let shared: SLCoreDataManager = {
         let shared = SLCoreDataManager()
@@ -90,7 +90,7 @@ class SLCoreDataManager {
     public func fetch<T>(table: T.Type, fetchRequestContent: ((NSFetchRequest<T>) -> Void)?,
                   predicate: () -> NSPredicate,
                   success: (([T]) -> Void)?,
-                  failure: ((Error) -> Void)?) {
+                  failure: ((Error?) -> Void)?) {
         
         let fetchRequest = NSFetchRequest<T>(entityName: NSStringFromClass(table as AnyClass))
         fetchRequestContent?(fetchRequest)
@@ -109,7 +109,7 @@ class SLCoreDataManager {
         
         do {
             let fetchobjects = try context.fetch(fetchRequest)
-            success?(fetchobjects)
+            fetchobjects.count > 0 ? success?(fetchobjects) : failure?(nil)
         } catch  {
             failure?(error)
             fatalError("保存失败：\(error)")

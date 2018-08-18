@@ -14,6 +14,9 @@ import Alamofire
 
 public class SLNetworkingHandler: SLRequestCacheProtocol {
     
+    // 数据缓存有效时间 默认5分钟
+    public static var requestCacheValidTime: Int = 5 * 60
+    
     static let APIProvider = MoyaProvider<SLAPIService>(plugins: [SLShowState(),
                                                                   SLPrintParameterAndJson()])
     
@@ -25,38 +28,25 @@ public class SLNetworkingHandler: SLRequestCacheProtocol {
 
         return Observable<NR>.create { (observer) -> Disposable in
 
-            // 从缓存获取数据
             if APIService.cacheData {
-                #if DEBUG
-                print("""
-                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                    从缓存获取数据=====> \(APIService)
-                    
-                    """)
-                #endif
+                // 从缓存获取数据
                 loadDataFromCacheWithTarget(APIService, success: { (response) in
+                    
                     observer.onNext(response)
                     observer.onCompleted()
-                }, failure: { (_) in
                     
-                    loadDataFromNetworkWothTarget(APIService, success: { (response) in
-                        observer.onNext(response)
-                        observer.onCompleted()
-                    }, failure: { (error) in
-                        observer.onNext(NR(code: HttpStatus.requestFailed.rawValue,
-                                           message: nil,
-                                           data: nil,
-                                           error: SLError.SLRequestFailed(error: error)))
-                        observer.onCompleted()
-                    })
+                }, failure: { (error) in
+                    observer.onNext(NR(code: HttpStatus.requestFailed.rawValue,
+                                       message: nil,
+                                       data: nil,
+                                       error: SLError.SLRequestFailed(error: error)))
+                    observer.onCompleted()
                 })
                 return Disposables.create()
             }
             else {
-                loadDataFromNetworkWothTarget(APIService, success: { (response) in
+                // 从网络获取数据
+                loadDataFromNetworkWithTarget(APIService, success: { (response) in
                     observer.onNext(response)
                     observer.onCompleted()
                 }, failure: { (error) in
@@ -68,38 +58,6 @@ public class SLNetworkingHandler: SLRequestCacheProtocol {
                 })
             }
             
-            return Disposables.create()
-            
-            
-            
-            
-            // 从网络获取数据
-            APIProvider.request(APIService) { (response) in
-                switch response {
-                case let .success(result):
-                    // 网络请求成功
-                    guard let json = try? result.mapJSON(),
-                        let response = NR.deserialize(from: json as? [String: Any])
-                        else {
-                            observer.onNext(NR(code: HttpStatus.noDataOrDataParsingFailed.rawValue,
-                                               message: nil,
-                                               data: nil,
-                                               error: SLError.SLNoDataOrDataParsingFailed(error: nil)))
-                        return
-                    }
-                    observer.onNext(response)
-                    observer.onCompleted()
-                    break
-                case let .failure(error):
-                    // 网络请求失败
-                    observer.onNext(NR(code: HttpStatus.requestFailed.rawValue,
-                                       message: nil,
-                                       data: nil,
-                                       error: SLError.SLRequestFailed(error: error)))
-                    observer.onCompleted()
-                    break
-                }
-            }
             return Disposables.create()
         }
 //            .debug()

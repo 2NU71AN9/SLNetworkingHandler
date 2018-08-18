@@ -17,7 +17,7 @@ extension Cache {
     }
 
     @NSManaged public var response: String?
-    @NSManaged public var timeStamp: Int32
+    @NSManaged public var timeStamp: Int64
     @NSManaged public var url: String?
 
 }

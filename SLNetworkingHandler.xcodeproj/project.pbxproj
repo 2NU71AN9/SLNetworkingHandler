@@ -100,6 +100,7 @@
 		127B7DAA20B7ED5B009B1424 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				126C8A492127A5FA00120A59 /* RequestCache.xcdatamodeld */,
 				12EF63B82127ECB100D106A6 /* Cache+CoreDataClass.swift */,
 				12EF63B92127ECB100D106A6 /* Cache+CoreDataProperties.swift */,
 				126C8A472127A3DE00120A59 /* SLCoreDataManager.swift */,
@@ -110,7 +111,6 @@
 				127B7DBB20B7F2A2009B1424 /* SLObservableExtension.swift */,
 				127B7DBD20B7F39F009B1424 /* SLNetworkingHandler.swift */,
 				127854732127B9D300AD3334 /* SLRequestCacheProtocol.swift */,
-				126C8A492127A5FA00120A59 /* RequestCache.xcdatamodeld */,
 			);
 			path = Networking;
 			sourceTree = "<group>";

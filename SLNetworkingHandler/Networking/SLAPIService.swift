@@ -54,7 +54,7 @@ extension SLAPIService: TargetType {
     
     /// 参数
     public var parameters: [String: Any] {
-        return ["a": 1, "b": "2"]
+        return [:]
     }
     
     /// 网络请求时是否显示loading...
