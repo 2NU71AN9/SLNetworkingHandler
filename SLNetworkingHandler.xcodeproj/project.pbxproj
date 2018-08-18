@@ -10,8 +10,6 @@
 		126C8A482127A3DF00120A59 /* SLCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C8A472127A3DE00120A59 /* SLCoreDataManager.swift */; };
 		126C8A4B2127A5FA00120A59 /* RequestCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 126C8A492127A5FA00120A59 /* RequestCache.xcdatamodeld */; };
 		127854742127B9D300AD3334 /* SLRequestCacheProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127854732127B9D300AD3334 /* SLRequestCacheProtocol.swift */; };
-		127854772127CE7200AD3334 /* Cache+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127854752127CE7200AD3334 /* Cache+CoreDataClass.swift */; };
-		127854782127CE7200AD3334 /* Cache+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127854762127CE7200AD3334 /* Cache+CoreDataProperties.swift */; };
 		127B7D9920B7E5FA009B1424 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7D9820B7E5FA009B1424 /* AppDelegate.swift */; };
 		127B7D9B20B7E5FA009B1424 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7D9A20B7E5FA009B1424 /* ViewController.swift */; };
 		127B7D9E20B7E5FA009B1424 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127B7D9C20B7E5FA009B1424 /* Main.storyboard */; };
@@ -24,6 +22,8 @@
 		127B7DBC20B7F2A2009B1424 /* SLObservableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DBB20B7F2A2009B1424 /* SLObservableExtension.swift */; };
 		127B7DBE20B7F39F009B1424 /* SLNetworkingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DBD20B7F39F009B1424 /* SLNetworkingHandler.swift */; };
 		127B7DC020B80E72009B1424 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DBF20B80E72009B1424 /* Model.swift */; };
+		12EF63BA2127ECB100D106A6 /* Cache+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF63B82127ECB100D106A6 /* Cache+CoreDataClass.swift */; };
+		12EF63BB2127ECB100D106A6 /* Cache+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF63B92127ECB100D106A6 /* Cache+CoreDataProperties.swift */; };
 		F4383B45D3EC3159F79A9FEB /* Pods_SLNetworkingHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916DADB06EFF5AD3D892849 /* Pods_SLNetworkingHandler.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,8 +31,6 @@
 		126C8A472127A3DE00120A59 /* SLCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLCoreDataManager.swift; sourceTree = "<group>"; };
 		126C8A4A2127A5FA00120A59 /* RequestCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RequestCache.xcdatamodel; sourceTree = "<group>"; };
 		127854732127B9D300AD3334 /* SLRequestCacheProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLRequestCacheProtocol.swift; sourceTree = "<group>"; };
-		127854752127CE7200AD3334 /* Cache+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Cache+CoreDataClass.swift"; path = "/Users/mac/Desktop/MyGitHub/SLNetworkingHandler/SLNetworkingHandler/Networking/Cache+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		127854762127CE7200AD3334 /* Cache+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Cache+CoreDataProperties.swift"; path = "/Users/mac/Desktop/MyGitHub/SLNetworkingHandler/SLNetworkingHandler/Networking/Cache+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		127B7D9520B7E5FA009B1424 /* SLNetworkingHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLNetworkingHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		127B7D9820B7E5FA009B1424 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		127B7D9A20B7E5FA009B1424 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +45,8 @@
 		127B7DBB20B7F2A2009B1424 /* SLObservableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLObservableExtension.swift; sourceTree = "<group>"; };
 		127B7DBD20B7F39F009B1424 /* SLNetworkingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLNetworkingHandler.swift; sourceTree = "<group>"; };
 		127B7DBF20B80E72009B1424 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		12EF63B82127ECB100D106A6 /* Cache+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Cache+CoreDataClass.swift"; path = "/Users/mac/Desktop/MyGitHub/SLNetworkingHandler/SLNetworkingHandler/Networking/Cache+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		12EF63B92127ECB100D106A6 /* Cache+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Cache+CoreDataProperties.swift"; path = "/Users/mac/Desktop/MyGitHub/SLNetworkingHandler/SLNetworkingHandler/Networking/Cache+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		4866DA75C8607D484F4DF26F /* Pods-SLNetworkingHandler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLNetworkingHandler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLNetworkingHandler/Pods-SLNetworkingHandler.debug.xcconfig"; sourceTree = "<group>"; };
 		5020BF4F92E9F964AF109F04 /* Pods-SLNetworkingHandler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLNetworkingHandler.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLNetworkingHandler/Pods-SLNetworkingHandler.release.xcconfig"; sourceTree = "<group>"; };
 		E916DADB06EFF5AD3D892849 /* Pods_SLNetworkingHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLNetworkingHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,8 +100,8 @@
 		127B7DAA20B7ED5B009B1424 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				127854752127CE7200AD3334 /* Cache+CoreDataClass.swift */,
-				127854762127CE7200AD3334 /* Cache+CoreDataProperties.swift */,
+				12EF63B82127ECB100D106A6 /* Cache+CoreDataClass.swift */,
+				12EF63B92127ECB100D106A6 /* Cache+CoreDataProperties.swift */,
 				126C8A472127A3DE00120A59 /* SLCoreDataManager.swift */,
 				127B7DAF20B7EDDD009B1424 /* SLAPI.swift */,
 				127B7DB120B7EDE5009B1424 /* SLAPIService.swift */,
@@ -271,8 +271,8 @@
 				127B7DB420B7EE00009B1424 /* SLMoyaPlugin.swift in Sources */,
 				127B7DBC20B7F2A2009B1424 /* SLObservableExtension.swift in Sources */,
 				127B7DBE20B7F39F009B1424 /* SLNetworkingHandler.swift in Sources */,
-				127854772127CE7200AD3334 /* Cache+CoreDataClass.swift in Sources */,
-				127854782127CE7200AD3334 /* Cache+CoreDataProperties.swift in Sources */,
+				12EF63BA2127ECB100D106A6 /* Cache+CoreDataClass.swift in Sources */,
+				12EF63BB2127ECB100D106A6 /* Cache+CoreDataProperties.swift in Sources */,
 				127B7DC020B80E72009B1424 /* Model.swift in Sources */,
 				127B7DB220B7EDE5009B1424 /* SLAPIService.swift in Sources */,
 				127854742127B9D300AD3334 /* SLRequestCacheProtocol.swift in Sources */,

@@ -32,10 +32,8 @@ extension SLRequestCacheProtocol where Self: SLNetworkingHandler {
         }, success: { (array) in
             
             guard let obj = array.first,
-                let data = obj.response,
-                let dict = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: Any],
-//                let json = try? response.mapJSON(),
-                let nr = NR.deserialize(from: dict)
+                let jsonStr = obj.response,
+                let nr = NR.deserialize(from: jsonStr)
                 else {
                     failure(nil)
                     return
@@ -67,7 +65,7 @@ extension SLRequestCacheProtocol where Self: SLNetworkingHandler {
                     let paramsStr = JSON(arrayLiteral: target.parameters).rawString() ?? ""
                     let url = String(format: "%@%@%@", target.baseURL.absoluteString, target.path, paramsStr)
                     cache?.url = url
-                    cache?.response = NSKeyedArchiver.archivedData(withRootObject: dict)
+                    cache?.response = JSON(arrayLiteral: dict).rawString()
                 }, success: {
                     print("保存成功")
                 }, failure: nil)

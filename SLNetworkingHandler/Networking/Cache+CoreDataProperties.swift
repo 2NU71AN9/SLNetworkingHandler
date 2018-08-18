@@ -16,7 +16,7 @@ extension Cache {
         return NSFetchRequest<Cache>(entityName: "Cache")
     }
 
-    @NSManaged public var response: Data?
+    @NSManaged public var response: String?
     @NSManaged public var timeStamp: Int32
     @NSManaged public var url: String?
 
