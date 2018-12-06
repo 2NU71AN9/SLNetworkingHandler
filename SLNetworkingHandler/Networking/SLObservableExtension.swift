@@ -8,7 +8,6 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
 import SwiftyJSON
 import HandyJSON
 import RxDataSources
@@ -234,7 +233,7 @@ extension Observable {
     public func mapSectionModel<T: HandyJSON>(_ text: Any, type: T.Type) -> Observable<[SectionModel<String, T>]> {
         return map { models in
             guard let models = models as? [T] else {
-                    return [SectionModel(model: "", items: [])]
+                return [SectionModel(model: "", items: [])]
             }
             
             if let text = text as? String {

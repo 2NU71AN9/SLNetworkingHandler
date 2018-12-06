@@ -4,17 +4,11 @@ target 'SLNetworkingHandler' do
   use_frameworks!
 
 pod 'SVProgressHUD'
-pod 'RxSwift'
-pod 'RxCocoa'
+pod 'RxSwift', '~> 4.4.0'
 pod 'RxDataSources'
 pod 'SwiftyJSON'
 pod 'Moya/RxSwift'
 pod 'HandyJSON'
-
-#pod 'pop'
-#pod 'SnapKit'
-#pod 'Then'
-#pod 'IQKeyboardManagerSwift'
-#pod 'Kingfisher'
+pod 'YYCache'
 
 end

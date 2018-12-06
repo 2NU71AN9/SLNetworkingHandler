@@ -21,9 +21,6 @@
 		127B7DBC20B7F2A2009B1424 /* SLObservableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DBB20B7F2A2009B1424 /* SLObservableExtension.swift */; };
 		127B7DBE20B7F39F009B1424 /* SLNetworkingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DBD20B7F39F009B1424 /* SLNetworkingHandler.swift */; };
 		127B7DC020B80E72009B1424 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B7DBF20B80E72009B1424 /* Model.swift */; };
-		12EF63BA2127ECB100D106A6 /* Cache+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF63B82127ECB100D106A6 /* Cache+CoreDataClass.swift */; };
-		12EF63BB2127ECB100D106A6 /* Cache+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF63B92127ECB100D106A6 /* Cache+CoreDataProperties.swift */; };
-		12FFD8CF2128191F00BBFE46 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 12FFD8CE2128191F00BBFE46 /* Resource.bundle */; };
 		F4383B45D3EC3159F79A9FEB /* Pods_SLNetworkingHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916DADB06EFF5AD3D892849 /* Pods_SLNetworkingHandler.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,9 +41,6 @@
 		127B7DBB20B7F2A2009B1424 /* SLObservableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLObservableExtension.swift; sourceTree = "<group>"; };
 		127B7DBD20B7F39F009B1424 /* SLNetworkingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLNetworkingHandler.swift; sourceTree = "<group>"; };
 		127B7DBF20B80E72009B1424 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		12EF63B82127ECB100D106A6 /* Cache+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Cache+CoreDataClass.swift"; path = "/Users/mac/Desktop/MyGitHub/SLNetworkingHandler/SLNetworkingHandler/Networking/Cache+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		12EF63B92127ECB100D106A6 /* Cache+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Cache+CoreDataProperties.swift"; path = "/Users/mac/Desktop/MyGitHub/SLNetworkingHandler/SLNetworkingHandler/Networking/Cache+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		12FFD8CE2128191F00BBFE46 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		4866DA75C8607D484F4DF26F /* Pods-SLNetworkingHandler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLNetworkingHandler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLNetworkingHandler/Pods-SLNetworkingHandler.debug.xcconfig"; sourceTree = "<group>"; };
 		5020BF4F92E9F964AF109F04 /* Pods-SLNetworkingHandler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLNetworkingHandler.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLNetworkingHandler/Pods-SLNetworkingHandler.release.xcconfig"; sourceTree = "<group>"; };
 		E916DADB06EFF5AD3D892849 /* Pods_SLNetworkingHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLNetworkingHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,9 +94,6 @@
 		127B7DAA20B7ED5B009B1424 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				12FFD8CE2128191F00BBFE46 /* Resource.bundle */,
-				12EF63B82127ECB100D106A6 /* Cache+CoreDataClass.swift */,
-				12EF63B92127ECB100D106A6 /* Cache+CoreDataProperties.swift */,
 				126C8A472127A3DE00120A59 /* SLCoreDataManager.swift */,
 				127B7DAF20B7EDDD009B1424 /* SLAPI.swift */,
 				127B7DB120B7EDE5009B1424 /* SLAPIService.swift */,
@@ -195,7 +186,6 @@
 				127B7DA320B7E5FB009B1424 /* LaunchScreen.storyboard in Resources */,
 				127B7DA020B7E5FB009B1424 /* Assets.xcassets in Resources */,
 				127B7D9E20B7E5FA009B1424 /* Main.storyboard in Resources */,
-				12FFD8CF2128191F00BBFE46 /* Resource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,11 +222,13 @@
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -245,11 +237,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -271,8 +265,6 @@
 				127B7DB420B7EE00009B1424 /* SLMoyaPlugin.swift in Sources */,
 				127B7DBC20B7F2A2009B1424 /* SLObservableExtension.swift in Sources */,
 				127B7DBE20B7F39F009B1424 /* SLNetworkingHandler.swift in Sources */,
-				12EF63BA2127ECB100D106A6 /* Cache+CoreDataClass.swift in Sources */,
-				12EF63BB2127ECB100D106A6 /* Cache+CoreDataProperties.swift in Sources */,
 				127B7DC020B80E72009B1424 /* Model.swift in Sources */,
 				127B7DB220B7EDE5009B1424 /* SLAPIService.swift in Sources */,
 				127854742127B9D300AD3334 /* SLRequestCacheProtocol.swift in Sources */,
@@ -421,7 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QLD65ZTPSF;
+				DEVELOPMENT_TEAM = M2CXXJLYVV;
 				INFOPLIST_FILE = SLNetworkingHandler/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -430,7 +422,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kk.SLNetworkingHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -441,7 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QLD65ZTPSF;
+				DEVELOPMENT_TEAM = M2CXXJLYVV;
 				INFOPLIST_FILE = SLNetworkingHandler/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -450,7 +442,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kk.SLNetworkingHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

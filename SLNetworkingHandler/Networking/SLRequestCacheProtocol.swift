@@ -9,8 +9,10 @@
 import Foundation
 import SwiftyJSON
 import Moya
+import YYCache
 
 protocol SLRequestCacheProtocol {
+    static var cacheName: String { get }
     /// 从缓存获取数据
     static func loadDataFromCacheWithTarget(_ target: SLAPIService, success: @escaping (NR) -> Void, failure: @escaping (Error?) -> Void)
     
@@ -20,46 +22,38 @@ protocol SLRequestCacheProtocol {
 
 extension SLRequestCacheProtocol where Self: SLNetworkingHandler {
     
+    static var cacheName: String {
+        return "NETWORKDATA"
+    }
+    
     /// 从缓存获取数据
     static func loadDataFromCacheWithTarget(_ target: SLAPIService, success: @escaping (NR) -> Void, failure: @escaping (Error?) -> Void) {
         
         let paramsStr = JSON(arrayLiteral: target.parameters).rawString() ?? ""
-        let url = String(format: "%@%@%@", target.baseURL.absoluteString, target.path, paramsStr)
+        let cache_key = String(format: "%@%@%@", target.baseURL.absoluteString, target.path, paramsStr)
         
-        SLCoreDataManager.shared.fetch(table: Cache.self, fetchRequestContent: { (request) in
-            request.fetchLimit = 1
-        }, predicate: { () -> NSPredicate in
-            return NSPredicate(format: "url = %@", url)
-        }, success: { (array) in
-
-            // 从缓存获取到数据, 判断是否有效
-            guard let obj = array.first,
-                let jsonStr = obj.response,
-                let nr = NR.deserialize(from: jsonStr),
-                Int64(Date().timeIntervalSince1970) - obj.timeStamp <= requestCacheValidTime
-                else {
-                    // 没找到数据或数据无效则进行网络请求
-                    loadDataFromNetworkWithTarget(target, success: success, failure: failure)
-                    return
-            }
-            
-            success(nr)
-            
-            #if DEBUG
-            print("""
-                从缓存获取到数据=====> \(target)
-                =====> \(JSON(jsonStr))
-                >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                """)
-            #endif
-            
-        }, failure: { _ in
-            // 没找到数据则进行网络请求
-            loadDataFromNetworkWithTarget(target, success: success, failure: failure)
-        })
+        guard let cache = YYCache(name: cacheName),
+            cache.containsObject(forKey: cache_key),
+            let obj = cache.object(forKey: cache_key) as? [String: Any],
+            let cache_timeStamp = obj["cache_timeStamp"] as? Int,
+            (Int(Date().timeIntervalSince1970) - cache_timeStamp) <= requestCacheValidTime,
+            let nr = NR.deserialize(from: obj) else {
+                // 没找到数据或数据无效则进行网络请求
+                loadDataFromNetworkWithTarget(target, success: success, failure: failure)
+                return
+        }
+        
+        success(nr)
+        #if DEBUG
+        print("""
+            从缓存获取到数据=====> \(target)
+            =====> \(obj)
+            >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            """)
+        #endif
     }
     
     /// 从网络获取数据
@@ -70,7 +64,7 @@ extension SLRequestCacheProtocol where Self: SLNetworkingHandler {
             case let .success(result):
                 // 网络请求成功
                 guard let json = try? result.mapJSON(),
-                    let dict = json as? [String: Any],
+                    var dict = json as? [String: Any],
                     let response = NR.deserialize(from: dict)
                     else {
                         failure(nil)
@@ -81,27 +75,11 @@ extension SLRequestCacheProtocol where Self: SLNetworkingHandler {
                 if target.cacheData {
                     // 更新本地保存的数据
                     let paramsStr = JSON(arrayLiteral: target.parameters).rawString() ?? ""
-                    let url = String(format: "%@%@%@", target.baseURL.absoluteString, target.path, paramsStr)
-                    SLCoreDataManager.shared.fetch(table: Cache.self, fetchRequestContent: { (request) in
-                        request.fetchLimit = 1
-                    }, predicate: { () -> NSPredicate in
-                        return NSPredicate(format: "url = %@", url)
-                    }, success: { (array) in
-                        for cache in array {
-                            cache.url = url
-                            cache.timeStamp = Int64(Date().timeIntervalSince1970)
-                            cache.response = JSON(json).description
-                        }
-                        try? SLCoreDataManager.shared.context.save()
-                    }, failure: { _ in
-                        SLCoreDataManager.shared.save(model: Cache.self, content: { (cache) in
-                            cache?.url = url
-                            cache?.timeStamp = Int64(Date().timeIntervalSince1970)
-                            cache?.response = JSON(json).description
-                        }, success: {
-                            print("保存成功")
-                        }, failure: nil)
-                    })
+                    let cache_key = String(format: "%@%@%@", target.baseURL.absoluteString, target.path, paramsStr)
+                    
+                    guard let cache = YYCache(name: cacheName) else { break }
+                    dict["cache_timeStamp"] = Int(Date().timeIntervalSince1970)
+                    cache.setObject(dict as NSCoding, forKey: cache_key)
                 }
                 
                 break
